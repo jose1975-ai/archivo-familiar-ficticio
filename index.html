@@ -7,8 +7,8 @@
 <style>
 body {
   margin: 0;
-  font-family: serif;
-  background: #5b4636;
+  font-family: 'Georgia', serif;
+  background: #4e3b2f;
   height: 100vh;
   overflow: hidden;
 }
@@ -19,24 +19,24 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #e8e4dc;
-  padding: 60px;
+  background: #eae6df;
+  padding: 60px 80px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
 h1 {
-  font-size: 40px;
-  letter-spacing: 2px;
+  font-size: 42px;
+  letter-spacing: 3px;
 }
 
 p {
+  color: #666;
   margin-top: 10px;
-  color: #555;
 }
 
 button {
-  margin-top: 20px;
+  margin-top: 25px;
   padding: 12px 30px;
   border: 1px solid black;
   background: none;
@@ -46,49 +46,40 @@ button {
 /* 照片 */
 .photo {
   position: absolute;
-  width: 120px;
+  width: 130px;
   background: white;
-  padding: 5px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  padding: 6px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
 }
 
 .photo img {
   width: 100%;
 }
 
-/* 摆放位置 */
-.p1 { top: 30px; left: 40px; transform: rotate(-10deg);}
-.p2 { top: 100px; right: 50px; transform: rotate(15deg);}
-.p3 { bottom: 40px; left: 100px; transform: rotate(8deg);}
-.p4 { bottom: 80px; right: 120px; transform: rotate(-12deg);}
+/* 随机位置 */
+.p1 { top: 30px; left: 40px; transform: rotate(-12deg);}
+.p2 { top: 80px; right: 80px; transform: rotate(10deg);}
+.p3 { bottom: 40px; left: 120px; transform: rotate(8deg);}
+.p4 { bottom: 100px; right: 100px; transform: rotate(-15deg);}
+.p5 { top: 200px; left: 300px; transform: rotate(5deg);}
 </style>
 
 </head>
 
 <body>
 
-<!-- 照片 -->
-<div class="photo p1">
-  <img src="https://via.placeholder.com/150">
-</div>
-
-<div class="photo p2">
-  <img src="https://via.placeholder.com/150">
-</div>
-
-<div class="photo p3">
-  <img src="https://via.placeholder.com/150">
-</div>
-
-<div class="photo p4">
-  <img src="https://via.placeholder.com/150">
-</div>
+<!-- 照片（先用测试图） -->
+<div class="photo p1"><img src="https://picsum.photos/200?1"></div>
+<div class="photo p2"><img src="https://picsum.photos/200?2"></div>
+<div class="photo p3"><img src="https://picsum.photos/200?3"></div>
+<div class="photo p4"><img src="https://picsum.photos/200?4"></div>
+<div class="photo p5"><img src="https://picsum.photos/200?5"></div>
 
 <!-- 中间 -->
 <div class="center-box">
   <h1>ARCHIVO DE FAMILIAS</h1>
   <p>Memorias encontradas</p>
-  <button onclick="alert('Próximamente')">EXPLORAR FICHAS</button>
+  <button>EXPLORAR FICHAS</button>
 </div>
 
 </body>
