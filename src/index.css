@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-typewriter: "Special Elite", "Courier Prime", "Courier New", Courier, monospace;
+  --font-serif: "Courier Prime", serif;
+  
+  --color-vintage-paper: #f4f1ea;
+  --color-vintage-ink: #2c2c2c;
+  --color-vintage-border: #d1ccc0;
+  --color-wood-dark: #3d2b1f;
+  --color-wood-light: #5c4033;
+}
+
+@layer base {
+  body {
+    @apply bg-vintage-paper text-vintage-ink font-serif selection:bg-vintage-ink/10;
+    background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  }
+}
+
+.wood-box {
+  background-color: var(--color-wood-dark);
+  background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+  box-shadow: inset 0 0 100px rgba(0,0,0,0.5), 0 20px 50px rgba(0,0,0,0.3);
+  border: 12px solid #2a1d15;
+  perspective: 1000px;
+}
+
+.wood-lid {
+  background-color: #4a3526;
+  background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+  border: 8px solid #2a1d15;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transform-origin: top;
+}
+
+.magnifying-glass {
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+}
+
+.white-glove {
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
+}
+
+.polaroid-mini {
+  @apply bg-white p-1 pb-4 shadow-lg border border-gray-200;
+  transition: transform 0.3s ease, z-index 0s;
+}
+
+.polaroid-mini:hover {
+  @apply z-50 scale-150;
+}
+
+.polaroid-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), inset 0 0 40px rgba(0,0,0,0.05);
+}
+
+.typewriter-text {
+  @apply font-typewriter;
+}
+
+/* Custom scrollbar for vintage feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-vintage-paper;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-vintage-border rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-vintage-ink/30;
+}

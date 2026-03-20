@@ -1,0 +1,79 @@
+{
+  "entities": {
+    "Family": {
+      "title": "Family",
+      "description": "A family record in the archive",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "history": { "type": "string" },
+        "coverPhotoUrl": { "type": "string" },
+        "photos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "photos"]
+    },
+    "Connection": {
+      "title": "Connection",
+      "description": "A relationship between two families",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "source": { "type": "string" },
+        "target": { "type": "string" },
+        "label": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "source", "target"]
+    },
+    "MapPhoto": {
+      "title": "MapPhoto",
+      "description": "A photo uploaded to the relationship map",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "url": { "type": "string" },
+        "description": { "type": "string" },
+        "index": { "type": "integer" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "url"]
+    }
+  },
+  "firestore": {
+    "/families/{familyId}": {
+      "schema": "Family",
+      "description": "Collection of family records"
+    },
+    "/families/{familyId}/photos/{photoId}": {
+      "schema": {
+        "type": "object",
+        "properties": {
+          "url": { "type": "string" },
+          "description": { "type": "string" },
+          "index": { "type": "integer" }
+        }
+      },
+      "description": "Individual photos for a family"
+    },
+    "/connections/{connectionId}": {
+      "schema": "Connection",
+      "description": "Collection of family relationships"
+    },
+    "/map_photos/{photoId}": {
+      "schema": "MapPhoto",
+      "description": "Collection of map photos"
+    }
+  }
+}

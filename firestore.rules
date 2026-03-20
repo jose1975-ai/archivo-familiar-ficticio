@@ -1,0 +1,70 @@
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// Collection: families
+// Document ID: familyId
+// Fields:
+//   - id: string (required)
+//   - name: string (required)
+//   - role: string
+//   - history: string
+//   - coverPhotoUrl: string
+//   - photos: list (required)
+//     - url: string
+//     - description: string
+//   - updatedAt: timestamp
+//
+// ===============================================================
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+        (request.auth.token.email == "heyongjun75@gmail.com" && request.auth.token.email_verified == true);
+    }
+
+    function isValidFamily(data) {
+      return data.keys().hasAll(['id', 'name']) &&
+             data.id is string &&
+             data.name is string && data.name.size() < 500;
+    }
+
+    function isValidConnection(data) {
+      return data.keys().hasAll(['id', 'source', 'target']) &&
+             data.id is string &&
+             data.source is string &&
+             data.target is string;
+    }
+
+    match /families/{familyId} {
+      allow read: if isAuthenticated();
+      allow create, update: if isAuthenticated() && isValidFamily(request.resource.data);
+      allow delete: if isAdmin();
+
+      match /photos/{photoId} {
+        allow read: if isAuthenticated();
+        allow write: if isAuthenticated();
+      }
+    }
+
+    match /connections/{connectionId} {
+      allow read: if isAuthenticated();
+      allow create, update: if isAuthenticated() && isValidConnection(request.resource.data);
+      allow delete: if isAdmin();
+    }
+
+    match /map_photos/{photoId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated();
+      allow delete: if isAdmin();
+    }
+  }
+}
